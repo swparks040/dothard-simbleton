@@ -35,4 +35,38 @@ export const purchasingAgentList = () => {
         }
     )
     return agentBusinessListHTML
-  }
+}
+
+document
+.querySelector("#search")
+.addEventListener(
+    // Event is NAMED "keypress" 
+    "keypress",
+    (keyPressEvent) => {
+
+        const agentSearchResultArticle = document.querySelector(".foundAgents")
+        
+        if (keyPressEvent.charCode === 13) {
+            
+            let businesses = getBusinesses()
+            
+            const foundAgent = businesses.find((business) => {
+                if (business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value)) {
+                    return true
+            }
+        }
+    )
+   
+        agentSearchResultArticle.innerHTML = `
+                  <section class="agents">
+                  <h2>Found Agents</h2>
+                      <h3 class="agent__name">${foundAgent.purchasingAgent.nameFirst} ${foundAgent.purchasingAgent.nameLast}</h3>
+                      <h3 class="agent__business_info">
+                          ${foundAgent.companyName}<br> 
+                          ${foundAgent.phoneWork}<hr>
+                      </h3>
+                  </section>
+              `
+                }
+        });
+        
